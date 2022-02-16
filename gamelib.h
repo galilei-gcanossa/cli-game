@@ -9,4 +9,5 @@ typedef struct input {
 
 long getTime();
 GameInput* getInput();
+void clearScreen();
 void game(void (*initFn)(), void (*loopFn)(GameInput*), long frameRate);

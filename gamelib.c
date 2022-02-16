@@ -7,14 +7,16 @@ void game(void (*initFn)(), void (*loopFn)(GameInput*), long frameRate){
 
   long currentFrameTime = 0;
   for(;;){
-    system("clear");
 
     GameInput* input = getInput();
     long tickTime = getTime() / (1000 / frameRate);
     if(input!=NULL || currentFrameTime < tickTime){
+      clearScreen();
       (*loopFn)(input);
       currentFrameTime = tickTime;
     }
+    if(input!=NULL)
+      free(input);
   }
 }
 
@@ -33,4 +35,9 @@ GameInput* getInput(){
   }
 
   return NULL;
+}
+
+void clearScreen() {
+  if(system("cls") == -1)
+    system("clear");
 }

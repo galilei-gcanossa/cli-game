@@ -3,9 +3,11 @@
 void loop(GameInput*);
 void init();
 
-int main(){
+int main(int argc, char** argv){
 
-  game(init, loop, 30);
+  int frameRate = argc == 2 ? atoi(argv[1]) : 30;
+
+  game(init, loop, frameRate);
 
   return 0;
 }
